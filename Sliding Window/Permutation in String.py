@@ -107,6 +107,5 @@ class Solution:
 
                 window_start += 1
 
-
         return False
 
