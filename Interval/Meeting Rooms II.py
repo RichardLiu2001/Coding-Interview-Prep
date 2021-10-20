@@ -1,5 +1,48 @@
 class Solution:
+
+
     def minMeetingRooms(self, intervals: List[List[int]]) -> int:
+        
+        if len(intervals) < 2:
+            return len(intervals)
+
+        intervals.sort(key=lambda x:x[0])
+
+        # stores the ending times of all rooms that have been allocated at some point, 
+        #sorted by the earliest ending time of the last meeting that was in the room
+        allocated_rooms = []
+
+        for interval in intervals:
+
+            current_room_start = interval[0]
+            current_room_end = interval[1]
+
+            # if there's no allocated rooms yet, allocate one
+            if len(allocated_rooms) == 0:
+
+                heapq.heappush(allocated_rooms, current_room_end)
+                continue
+
+            # the earliest ending time of all meetings before the current is stored
+            # at the front of the queue of allocated rooms
+            earliest_ending_time = allocated_rooms[0]
+
+
+            # if the earliest ending time is before the current room's start,
+            # we can reuse the room, so update it with the new ending time (pop and push back with new time)
+            if earliest_ending_time <= current_room_start:
+                heapq.heappop(allocated_rooms)
+
+
+            # if a new room is assigned, we want to add it to the heap
+            # if an old room is freed up and reused, we want to add it back 
+            # with the new ending time
+            heapq.heappush(allocated_rooms, current_room_end)
+
+        return len(allocated_rooms)
+
+
+    def minMeetingRoomsStartEnd(self, intervals: List[List[int]]) -> int:
         
         if len(intervals) < 2:
             return len(intervals)
