@@ -9,7 +9,7 @@ class Solution:
         intervals.sort(key=lambda x:x[0])
 
         # stores the ending times of all rooms that have been allocated at some point, 
-        #sorted by the earliest ending time of the last meeting that was in the room
+        # sorted by the earliest ending time of the last meeting that was in the room
         allocated_rooms = []
 
         for interval in intervals:
