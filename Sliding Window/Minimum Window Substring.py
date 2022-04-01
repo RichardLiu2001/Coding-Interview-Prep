@@ -17,10 +17,11 @@ class Solution:
             t_freqs[character] += 1
 
 
-        # how many characters we have 
-        #chars_remaining = len(t_freqs)
+        # how many unique characters we have left to find
+        chars_remaining = len(t_freqs)
 
-        chars_remaining = len(t)
+        # how many total characters we have to find
+        #chars_remaining = len(t)
 
 
         min_window_left = 0
@@ -36,11 +37,12 @@ class Solution:
             if cur_letter in t_freqs:
                 t_freqs[cur_letter] -= 1
 
-                if t_freqs[cur_letter] >= 0:
+                #if t_freqs[cur_letter] >= 0:
+
+                # reached quota for that one character
+                if t_freqs[cur_letter] == 0:
                     chars_remaining -= 1
 
-                #if t_freqs[cur_letter] == 0:
-                    #chars_remaining -= 1
 
             while chars_remaining == 0:
 
@@ -56,7 +58,10 @@ class Solution:
                 if left_char in t_freqs:
                     t_freqs[left_char] += 1
 
-                    if t_freqs[left_char] >= 1:
+                    #if t_freqs[left_char] >= 1:
+
+                    # now have 1 unique character to match, current window no longer contains all of t
+                    if t_freqs[left_char] == 1:
                         chars_remaining += 1
 
                 left += 1
