@@ -24,7 +24,7 @@ class Solution:
 
         return i >= 0 and i < m and j >= 0 and j < n
 
-
+    # DFS
     def wordSearch(self, i, j, board, word, current_index_in_word, visited):
 
         # not in bounds
