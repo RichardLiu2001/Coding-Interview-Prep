@@ -4,22 +4,47 @@ class Solution:
 
         result = []
 
-        self.backtrack(nums, 0, result)
+        #self.backtrack(nums, 0, result)
+
+        used = [False for _ in range(len(nums))]
+
+        self.buildPermutations(nums, [], used, result)
 
         return result
 
-    def backtrack(self, nums, first, result):
 
-        if first == len(nums):
+    def buildPermutations(self, nums, currentPermutation, used, result):
+
+        if len(currentPermutation) == len(nums):
+
+            result.append(currentPermutation[:])
+
+        else:
+
+            for i in range(len(nums)):
+
+                if not used[i]:
+
+                    currentPermutation.append(nums[i])
+                    used[i] = True
+                    self.buildPermutations(nums, currentPermutation, used, result)
+
+                    used[i] = False
+                    currentPermutation.pop()
+
+
+    def generatePermutations(nums, currentIndex, result):
+
+        if currentIndex == len(nums):
+
             result.append(nums[:])
 
-        for i in range(first, len(nums)):
+        else:
 
-            nums[first], nums[i] = nums[i], nums[first]
+            for i in range(currentIndex, len(nums)):
 
-            self.backtrack(nums, first + 1, result)
+                nums[i], nums  [currentIndex] = nums[currentIndex], nums[i]
 
-            nums[first], nums[i] = nums[i], nums[first]
 
 
     def permuteNeetcode(self, nums: List[int]) -> List[List[int]]:
