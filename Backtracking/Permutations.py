@@ -10,6 +10,8 @@ class Solution:
 
         self.buildPermutations(nums, [], used, result)
 
+        #self.swapPermutations(nums, 0, result)
+
         return result
 
 
@@ -33,7 +35,7 @@ class Solution:
                     currentPermutation.pop()
 
 
-    def generatePermutations(nums, currentIndex, result):
+    def swapPermutations(self, nums, currentIndex, result):
 
         if currentIndex == len(nums):
 
@@ -42,6 +44,10 @@ class Solution:
         else:
 
             for i in range(currentIndex, len(nums)):
+
+                nums[i], nums  [currentIndex] = nums[currentIndex], nums[i]
+
+                self.swapPermutations(nums, currentIndex + 1, result)
 
                 nums[i], nums  [currentIndex] = nums[currentIndex], nums[i]
 
@@ -66,12 +72,10 @@ class Solution:
             for permutation in permutations:
 
                 permutation.append(front)
-                #permutation.insert(0, front)
 
             result.extend(permutations)
             
             nums.append(front)
-            #nums.insert(0, front)
 
 
         return result
