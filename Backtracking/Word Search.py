@@ -39,7 +39,11 @@ class Solution:
         if board[i][j] != word[current_index_in_word]:
             return False
 
+        # success base case
+        # can also change this to len(word) and put before failure base cases
         if current_index_in_word == len(word) - 1:
+
+            # last letter is valid and matches
             return True
 
         visited.add((i, j))
@@ -52,7 +56,3 @@ class Solution:
         visited.remove((i, j))
 
         return False
-
-
-
-

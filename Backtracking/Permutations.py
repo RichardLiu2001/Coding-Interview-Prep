@@ -8,11 +8,33 @@ class Solution:
 
         used = [False for _ in range(len(nums))]
 
-        self.buildPermutations(nums, [], used, result)
+        remainingSet = set(nums)
+        self.buildPermutationsSet(nums, [], remainingSet, result)
+
+        #self.buildPermutations(nums, [], used, result)
 
         #self.swapPermutations(nums, 0, result)
 
         return result
+
+    def buildPermutationsSet(self, nums, currentPermutation, remainingSet, result):
+
+        if len(currentPermutation) == len(nums):
+
+            result.append(currentPermutation[:])
+
+        else:
+
+            for i in range(len(nums)):
+
+                if nums[i] in remainingSet:
+
+                    currentPermutation.append(nums[i])
+                    remainingSet.remove(nums[i])
+                    self.buildPermutationsSet(nums, currentPermutation, remainingSet, result)
+
+                    remainingSet.add(nums[i])
+                    currentPermutation.pop() 
 
 
     def buildPermutations(self, nums, currentPermutation, used, result):
@@ -79,6 +101,3 @@ class Solution:
 
 
         return result
-
-
-
