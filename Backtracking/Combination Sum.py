@@ -27,3 +27,7 @@ class Solution:
         currentCombination.pop()
 
         self.getCombinations(currentIndex + 1, currentCombination, candidates, target, result)
+
+        # Questions
+        # 1. Why does this prevent duplicates?
+        # 2. How does the LeetCode solution with the for loop work?
