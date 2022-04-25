@@ -25,16 +25,14 @@ class Solution:
 
         else:
 
-            for i in range(len(nums)):
+            for num in remainingSet:
 
-                if nums[i] in remainingSet:
+                currentPermutation.append(num)
+                remainingSet.remove(num)
+                self.buildPermutationsSet(nums, currentPermutation, remainingSet, result)
 
-                    currentPermutation.append(nums[i])
-                    remainingSet.remove(nums[i])
-                    self.buildPermutationsSet(nums, currentPermutation, remainingSet, result)
-
-                    remainingSet.add(nums[i])
-                    currentPermutation.pop() 
+                remainingSet.add(num)
+                currentPermutation.pop() 
 
 
     def buildPermutations(self, nums, currentPermutation, used, result):
