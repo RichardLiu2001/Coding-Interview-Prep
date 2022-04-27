@@ -24,10 +24,13 @@ class Solution:
         
         currentChar = s[currentIndex]
 
+        # choice: where to end the current palindrome
         for end in range(currentIndex, len(s)):
 
-            if :
+            # if isPalindrome(s[currentIndex:end+1]):
+            if currentChar == s[end] and (currentIndex + 1 == end or currentIndex == len(s) - 1 or palindromeMemo[currentIndex + 1][end - 1]):
 
+                # make choice to end the current palindrome at index end (end + 1 for substring indexing)
                 currentPartition.append(s[currentIndex:end+1])
-                self.partitionBacktrack(s, end + 1, currentPartition, result)
+                self.partitionBacktrack(s, end + 1, currentPartition, result, palindromeMemo)
                 currentPartition.pop()
