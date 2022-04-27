@@ -8,12 +8,12 @@ class Solution:
         if len(s) == 0:
             return result
 
-        self.partitionBacktrack(s, 0, [], "", result)
+        self.partitionBacktrack(s, 0, [], result)
 
         return result
 
 
-    def partitionBacktrack(self, s, currentIndex, currentPartition, currentCandidatePalindrome, result):
+    def partitionBacktrack(self, s, currentIndex, currentPartition, result):
 
 
         if currentIndex == len(s):
@@ -23,25 +23,12 @@ class Solution:
         
         currentChar = s[currentIndex]
 
-        # if current candidate palindrome is palindrome: 2 choices: create new palindrome or continue adding to it
+        for i in range(currentIndex, len(s)):
 
-        # if current candidate is not palindrome, must add currentChar to it
-
-        if currentCandidatePalindrome != "" and self.isPalindrome(currentCandidatePalindrome):
-
-            # create new palindrome
-            currentPartition.append(currentCandidatePalindrome)
-            self.partitionBacktrack(s, currentIndex + 1, currentPartition, currentChar, result)
-
-            currentPartition.pop()
-            # add on to current palindrome
-            self.partitionBacktrack(s, currentIndex + 1, currentPartition, currentCandidatePalindrome + currentChar, result)
-
-
-
-        else:
-
-            self.partitionBacktrack(s, currentIndex + 1, currentPartition, currentCandidatePalindrome + currentChar, result)
+            if self.isPalindrome(s[currentIndex:i + 1]):
+                currentPartition.append(s[currentIndex:i+1])
+                self.partitionBacktrack(s, i + 1, currentPartition, result)
+                currentPartition.pop()
 
 
     def isPalindrome(self, s):
