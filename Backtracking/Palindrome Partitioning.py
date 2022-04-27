@@ -8,13 +8,14 @@ class Solution:
         if len(s) == 0:
             return result
 
-        self.partitionBacktrack(s, 0, [], result)
+        palindromeMemo = [[False for _ in range(len(s))] for _ in range(len(s))]
+
+        self.partitionBacktrack(s, 0, [], result, palindromeMemo)
 
         return result
 
 
-    def partitionBacktrack(self, s, currentIndex, currentPartition, result):
-
+    def partitionBacktrack(self, s, currentIndex, currentPartition, result, palindromeMemo):
 
         if currentIndex == len(s):
 
@@ -23,14 +24,10 @@ class Solution:
         
         currentChar = s[currentIndex]
 
-        for i in range(currentIndex, len(s)):
+        for end in range(currentIndex, len(s)):
 
-            if self.isPalindrome(s[currentIndex:i + 1]):
-                currentPartition.append(s[currentIndex:i+1])
-                self.partitionBacktrack(s, i + 1, currentPartition, result)
+            if :
+
+                currentPartition.append(s[currentIndex:end+1])
+                self.partitionBacktrack(s, end + 1, currentPartition, result)
                 currentPartition.pop()
-
-
-    def isPalindrome(self, s):
-
-        return s == s[::-1]
