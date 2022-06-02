@@ -34,6 +34,7 @@ class Solution:
                     used[i] = False
                     currentPermutation.pop()
 
+    # current index represents where to start building permutations from
 
     def swapPermutations(self, nums, currentIndex, result):
 
@@ -45,6 +46,7 @@ class Solution:
 
             for i in range(currentIndex, len(nums)):
 
+                # try putting each number at the "front"
                 nums[i], nums  [currentIndex] = nums[currentIndex], nums[i]
 
                 self.swapPermutations(nums, currentIndex + 1, result)
