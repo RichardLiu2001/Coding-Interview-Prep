@@ -3,6 +3,7 @@ class Solution:
         
         result = []
 
+        # to detect duplicates
         nums.sort()
 
         self.subsetsWithDupHelp(nums, 0, [], result)
@@ -10,14 +11,14 @@ class Solution:
         return result
 
 
-    def subsetsWithDupHelp(self, nums, currentIndex, currentSubset, result):
+    def subsetsWithDupHelp(self, nums, firstIndex, currentSubset, result):
 
         result.append(currentSubset[:])
 
-        for i in range(currentIndex, len(nums)):
+        for i in range(firstIndex, len(nums)):
 
             # avoid duplicate
-            if i != index and nums[i] == nums[i - 1]:
+            if i != firstIndex and nums[i] == nums[i - 1]:
                 continue
 
             currentSubset.append(nums[i])
@@ -25,7 +26,3 @@ class Solution:
             self.subsetsWithDupHelp(nums, i + 1, currentSubset, result)
 
             currentSubset.pop()
-
-
-
-            
