@@ -1,22 +1,31 @@
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
         
-        result = set()
+        result = []
 
         nums.sort()
 
         self.subsetsWithDupHelp(nums, 0, [], result)
 
-        return list(result)
+        return result
 
 
     def subsetsWithDupHelp(self, nums, currentIndex, currentSubset, result):
 
-        if currentIndex == len(nums):
-            result.append(currentSubset)
+        result.append(currentSubset[:])
 
-        else:
+        for i in range(currentIndex, len(nums)):
 
-            currentNum = nums[currentIndex]
+            # avoid duplicate
+            if i != index and nums[i] == nums[i - 1]:
+                continue
+
+            currentSubset.append(nums[i])
+
+            self.subsetsWithDupHelp(nums, i + 1, currentSubset, result)
+
+            currentSubset.pop()
+
+
 
             

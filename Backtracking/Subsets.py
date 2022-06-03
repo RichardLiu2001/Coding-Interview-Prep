@@ -16,8 +16,20 @@ class Solution:
             self.generateSubsets(currentIndex + 1, nums, currentSubset, result)
 
             # try with number at current index
-            currentSubset.append(nums[i])
+            currentSubset.append(nums[currentIndex])
             self.generateSubsets(currentIndex + 1, nums, currentSubset, result)
             
             # reset
+            currentSubset.pop()
+
+    def generateSubsetsII(self, firstIndex, nums, currentSubset, result):
+
+        result.append(currentSubset[:])
+
+        for i in range(currentIndex, len(nums)):
+
+            currentSubset.append(nums[i])
+
+            self.generateSubsetsII(i + 1, nums, currentSubset, result)
+
             currentSubset.pop()
