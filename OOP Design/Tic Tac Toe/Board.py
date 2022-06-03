@@ -42,5 +42,20 @@ class Board:
 		# return X, O, D, or P
 	
 	def print_board(self):
+		string = '''
+     |     |     
+     |     |     
+_____|_____|_____
+     |     |     
+     |     |     
+_____|_____|_____
+     |     |     
+     |     |     
+     |     |     
 
-		print('\n'.join(['\t'.join([str(cell) for cell in row]) for row in self.board]))
+	'''
+
+		print(len(string))
+			
+
+		#print('\n'.join(['\t'.join([str(cell) for cell in row]) for row in self.board]))
