@@ -56,6 +56,11 @@ _____|_____|_____
 	'''
 
 		print(len(string))
+		for i in range(len(string)):
+
+			if string[i] != ' ':
+				print(str(i))
+			##print(str(i) + ": " + string[i])
 			
 
 		#print('\n'.join(['\t'.join([str(cell) for cell in row]) for row in self.board]))
