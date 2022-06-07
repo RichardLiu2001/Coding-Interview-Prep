@@ -8,7 +8,7 @@ class Solution:
         if len(s) == 0:
             return result
 
-        # palindromeMemo[i][j] indicates if s[i:j] is a palindrome
+        # palindromeMemo[i][j] indicates if s[i:j+1] is a palindrome
         palindromeMemo = [[False for _ in range(len(s))] for _ in range(len(s))]
 
         self.partitionBacktrack(s, 0, [], result, palindromeMemo)
@@ -31,10 +31,10 @@ class Solution:
             #if self.isPalindrome(s[currentIndex:end+1]):
 
             # checking if the substring from currentIndex to end+1 is a palindrome
-            
+
             # if the end char matches the beginning char (could be the same index) and either (the end char is <= 2 ahead aka 
-            # the substring is of length 1 or 2, or everything in the middle is already known to be a palindrome)
-            if s[end] == s[beginPalindromeIndex] and (end - beginPalindromeIndex <= 2 or palindromeMemo[beginPalindromeIndex + 1][end - 1]):
+            # the substring is of length 1, 2, or 3, or everything in the middle is already known to be a palindrome)
+            if s[end] == s[beginPalindromeIndex] and (end - beginPalindromeIndex < 3 or palindromeMemo[beginPalindromeIndex + 1][end - 1]):
 
                 palindromeMemo[beginPalindromeIndex][end] = True
                 # make choice to end the current palindrome at index end (end + 1 for substring indexing)
