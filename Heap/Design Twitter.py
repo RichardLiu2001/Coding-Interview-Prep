@@ -7,6 +7,7 @@ class Twitter:
 
         self.followingMap = defaultdict(set) # followerId -> set of followees (people who they are following)
 
+        # Note about defaultdict: defaultdict[NONEXISTENT_KEY] returns the default value (an empty list, set, etc.)
 
     def postTweet(self, userId: int, tweetId: int) -> None:
         self.tweetMap[userId].append((self.time, tweetId))
@@ -15,22 +16,58 @@ class Twitter:
 
     def getNewsFeed(self, userId: int) -> List[int]:
         result = []
-        minHeap = []
+
+        minHeap = [] # stores tweets that could potentially appear in the feed in chronological order
 
         # news feed includes own tweets, add self to followees
         # will only keep 1 copy since followees is a set
         self.followingMap[userId].add(userId)
 
+        # add the most recent tweet of all followees
         for followeeId in self.followingMap[userId]:
 
-            followee_tweet_list = self.tweetMap[followeeId]
-            most_recent_tweet_index = len(followee_tweet_list) - 1
-            most_recent_tweet_id = followee_tweet_list[most_recent_tweet_index]
-            tweet_time = self.tweetMap[most_recent_tweet_id]
+            if followeeId in self.tweetMap:
+
+                followee_tweet_list = self.tweetMap[followeeId]
+                most_recent_tweet_index = len(followee_tweet_list) - 1
+                most_recent_tweet_time, most_recent_tweet_id = followee_tweet_list[most_recent_tweet_index]
+
+                heapq.heappush(minHeap, (most_recent_tweet_time, most_recent_tweet_id, followeeId, most_recent_tweet_index))
+
+        # the heap now contains the most recent tweet of every followee. 
+        # we will pop the most recent tweet, add it to the result, and 
+        # add the next most recent tweet of that followee to the heap.
+
+        # this guarantees the correct chronological order of tweets because 
+        # tweets are added to the heap (and thus inserted in time order) regardless 
+        # of the followee. 
+
+        # The next most recent tweet will always be processed next because either:
+        # a) it is already the next element in the heap
+        # b) it is the child (same parent followee) of the current element, which will add it and move it to the front
+
+        # Note: the next most recent tweet cannot be the child of a different followee than the current
+        # tweet because the parent tweet (which is more recent) must already exist in the heap.
+        # This is because we added all the "most recent" parents earlier.
+        while len(minHeap) > 0 and len(result) < 10:
+
+            # get the information of the most recent tweet that should appear in the user's feed
+            most_recent_tweet_time, most_recent_tweet_id, followeeId, most_recent_tweet_index = heapq.heappop(minHeap)
+            result.append(most_recent_tweet_id)
+
+            # find the next most recent tweet from that followee
+            next_most_recent_tweet_index = most_recent_tweet_index - 1
+
+            if next_most_recent_tweet_index >= 0:
+                time, tweetId = self.tweetMap[followeeId][next_most_recent_tweet_index]
+
+                heapq.heappush(minHeap, (time, tweetId, followeeId, next_most_recent_tweet_index))
+
+        return result
 
 
     def follow(self, followerId: int, followeeId: int) -> None:
-        self.followingMap[followerId].append(followeeId)
+        self.followingMap[followerId].add(followeeId)
 
 
     def unfollow(self, followerId: int, followeeId: int) -> None:
