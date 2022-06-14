@@ -6,7 +6,7 @@ class Board:
 
 	def __init__(self):
 
-		self.board = [['' for i in range(3)] for j in range(3)]
+		self.board = [' ' for _ in range(9)]
 
 
 	def is_valid_move(self, move):
@@ -15,26 +15,20 @@ class Board:
 
 			return False
 
-		row = move // 3 
-		column = move % 3  
-
-		if self.board[row][column] != '':
+		if self.board[move - 1] != ' ':
 			# occupied already
 			return False
 
 		return True
 
 
-	def make_move(self, move, player_symbol):
-
-		row = move // 3 
-		column = move % 3  
+	def make_move(self, move, player_symbol): 
 
 		if not self.is_valid_move(move):
 
 			return False
 
-		self.board[row][column] = player_symbol
+		self.board[move - 1] = player_symbol
 
 	def check_result(self):
 
@@ -42,25 +36,21 @@ class Board:
 		# return X, O, D, or P
 	
 	def print_board(self):
-		string = '''
-     |     |     
-     |     |     
-_____|_____|_____
-     |     |     
-     |     |     
-_____|_____|_____
-     |     |     
-     |     |     
-     |     |     
 
-	'''
 
-		print(len(string))
-		for i in range(len(string)):
 
-			if string[i] != ' ':
-				print(str(i))
-			##print(str(i) + ": " + string[i])
+		print("\n")
+		print("\t     |     |")
+		print("\t  {}  |  {}  |  {}".format(self.board[0], self.board[1], self.board[2]))
+		print('\t_____|_____|_____')
+
+		print("\t     |     |")
+		print("\t  {}  |  {}  |  {}".format(self.board[3], self.board[4], self.board[5]))
+		print('\t_____|_____|_____')
+
+		print("\t     |     |")
+
+		print("\t  {}  |  {}  |  {}".format(self.board[6], self.board[7], self.board[8]))
+		print("\t     |     |")
+		print("\n")
 			
-
-		#print('\n'.join(['\t'.join([str(cell) for cell in row]) for row in self.board]))

@@ -24,7 +24,7 @@ class Game:
 
 		while not self.board.is_valid_move(move):
 
-			print(str(move) + " is not a valid move. Your move must be a number 1 - 9 inclusive.")
+			print(str(move) + " is not a valid move.")
 			move = player.get_move()
 
 		return move
