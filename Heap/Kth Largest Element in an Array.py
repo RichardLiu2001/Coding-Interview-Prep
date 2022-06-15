@@ -7,6 +7,6 @@ class Solution:
 
             heapq.heappop(nums)
 
-        return nums[0
+        return nums[0]
 
     ## Note: Quickselect algorithm could be useful
