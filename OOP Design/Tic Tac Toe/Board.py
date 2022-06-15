@@ -37,8 +37,6 @@ class Board:
 	
 	def print_board(self):
 
-
-
 		print("\n")
 		print("\t     |     |")
 		print("\t  {}  |  {}  |  {}".format(self.board[0], self.board[1], self.board[2]))
