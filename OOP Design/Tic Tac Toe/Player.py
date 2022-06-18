@@ -18,5 +18,4 @@ class Player:
 
 	def get_move(self):
 
-		player_move = input("Player " + self.symbol + ", enter the square (1-9) to place an " + self.symbol + " :")
-		return int(player_move)
+		return input("Player " + self.symbol + ", enter the square (1-9) to place an " + self.symbol + " :")

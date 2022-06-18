@@ -20,32 +20,31 @@ class Game:
 
 	def get_player_move(self, player):
 
-		move = player.get_move()
+		isValid = False
 
-		isValid, code = self.board.is_valid_move(move)
+		move = None
 
 		while not isValid:
 
-			print(str(move) + " is not a valid move.")
-
-			if code == 0:
-				print("The move must be a number between 1 and 9, inclusive")
-
-			elif code == 1:
-				print("Square " + str(move) + " is already occupied")
-
 			move = player.get_move()
 
-			isValid, code = self.board.is_valid_move(move)
+			try:
+				move = int(move)
 
+				isValid, code = self.board.is_valid_move(move)
 
-		#while not self.board.is_valid_move(move)[0]:
+				if not isValid:
+					print(str(move) + " is not a valid move.")
+					if code == 0:
+						print("The move must be a number between 1 and 9, inclusive")
 
-		#	print(str(move) + " is not a valid move.")
+					elif code == 1:
+						print("Square " + str(move) + " is already occupied")
 
+			except:
+				print(str(move) + " is not a valid move.")
 
-
-		#	move = player.get_move()
+				print(move + " is not an integer.")
 
 		return move
 
