@@ -15,8 +15,6 @@ class Game:
 		self.p1 = Player('X')
 		self.p2 = Player('O')
 
-		#self.p1_turn = True
-
 
 	def get_player_move(self, player):
 
