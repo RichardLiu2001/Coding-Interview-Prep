@@ -18,20 +18,20 @@ class Game:
 
 	def get_player_move(self, player):
 
-		isValid = False
+		is_valid = False
 
 		move = None
 
-		while not isValid:
+		while not is_valid:
 
 			move = player.get_move()
 
 			try:
 				move = int(move)
 
-				isValid, code = self.board.is_valid_move(move)
+				is_valid, code = self.board.is_valid_move(move)
 
-				if not isValid:
+				if not is_valid:
 					print(str(move) + " is not a valid move.")
 					if code == 0:
 						print("The move must be a number between 1 and 9, inclusive")
@@ -49,7 +49,7 @@ class Game:
 
 	def play(self):
 
-		result = self.board.check_result()
+		result = self.board.check_result(None)
 
 		while result == 'P':
 
@@ -57,7 +57,7 @@ class Game:
 
 			p1_move = self.get_player_move(self.p1)
 			self.board.make_move(p1_move, self.p1.symbol)
-			result = self.board.check_result()
+			result = self.board.check_result(p1_move)
 			self.board.print_board()
 			if result != 'P':
 				break
@@ -66,7 +66,7 @@ class Game:
 			self.board.make_move(p2_move, self.p2.symbol)
 			self.board.print_board()
 
-			result = self.board.check_result()
+			result = self.board.check_result(p2_move)
 
 		print("Game over!")
 		if result == 'D':
