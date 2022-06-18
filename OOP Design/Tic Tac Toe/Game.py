@@ -22,10 +22,30 @@ class Game:
 
 		move = player.get_move()
 
-		while not self.board.is_valid_move(move):
+		isValid, code = self.board.is_valid_move(move)
+
+		while not isValid:
 
 			print(str(move) + " is not a valid move.")
+
+			if code == 0:
+				print("The move must be a number between 1 and 9, inclusive")
+
+			elif code == 1:
+				print("Square " + str(move) + " is already occupied")
+
 			move = player.get_move()
+
+			isValid, code = self.board.is_valid_move(move)
+
+
+		#while not self.board.is_valid_move(move)[0]:
+
+		#	print(str(move) + " is not a valid move.")
+
+
+
+		#	move = player.get_move()
 
 		return move
 

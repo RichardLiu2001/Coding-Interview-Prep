@@ -13,13 +13,13 @@ class Board:
 
 		if move < 1 or move > 9:
 
-			return False
+			return False, 0
 
 		if self.board[move - 1] != ' ':
 			# occupied already
-			return False
+			return False, 1
 
-		return True
+		return True, -1
 
 
 	def make_move(self, move, player_symbol): 
