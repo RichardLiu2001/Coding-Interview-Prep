@@ -16,6 +16,12 @@ class Solution:
 
         # at most n slots of idle time follow every occurrence of the maximum
         # occurring character, except for the last occurence. 
+
+        # This is the maximum amount of total idle time, which would be the case if 
+        # it were only 1 task.
+        # This is bounded by the frequency of the most frequent task. Other less frequent tasks
+        # must interleave with the most frequent, and anything left over will be less
+        # idle time than the max because that task is less frequent.
         idle_time = (f_max - 1) * n
         
         while len(frequencies) > 0 and idle_time > 0:
