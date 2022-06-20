@@ -2,9 +2,6 @@
 # name 
 # getting input for player's move
 
-
-
-
 class Player:
 
 	def __init__(self, symbol):
