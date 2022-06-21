@@ -1,6 +1,8 @@
 import random
 
 # looking for the kth smallest element in nums
+# k is using 0 based indexing (0th smallest is the smallest, or what would
+# appear at index 0 if the array was sorted)
 def quickSelect(nums, left, right, k):
 
 	# the index of the pivot, which we arbitrarily chose as the number 
@@ -48,7 +50,5 @@ def partition(nums, left, right):
 
 nums = [0,1,2,3,4,5,6,7]
 random.shuffle(nums)
-
-for i in range(8):
-	print(quickSelect(nums, 0, 7, i))
+print(str(quickSelect(nums, 0, 7, 0)))
 
