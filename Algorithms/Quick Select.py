@@ -48,7 +48,7 @@ def partition(nums, left, right):
 
     return separating_index
 
-nums = [0,1,2,3,4,5,6,7]
-random.shuffle(nums)
-print(str(quickSelect(nums, 0, 7, 0)))
+# nums = [0,1,2,3,4,5,6,7]
+# random.shuffle(nums)
+# print(str(quickSelect(nums, 0, 7, 0)))
 
