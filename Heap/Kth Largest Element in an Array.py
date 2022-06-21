@@ -2,13 +2,15 @@ class Solution:
 
     def findKthLargest(self, nums: List[int], k: int) -> int:
 
-        kth_smallest_index = len(nums) - k
+        corresponding_smallest_index = len(nums) - k
 
-        return self.quickSelect(kthLargestIndex, nums, 0, len(nums) - 1)
+        return self.quickSelect(corresponding_smallest_index, nums, 0, len(nums) - 1)
 
-    def quickSelect(self, , nums, l, r):
+    def quickSelect(self, k, nums, l, r):
 
+        # to the left of this index are < pivot, to the right are > pivot
         pivot_separating_index = l
+
         # for simplicity, always choose rightmost value as the pivot
         # could randomly pick any value between l and r inclusive
         pivot = nums[r]
@@ -19,22 +21,22 @@ class Solution:
 
             if current_num <= pivot:
 
-                nums[currentIndex], nums[i] = nums[i], nums[currentIndex]
-                currentIndex += 1
+                nums[pivot_separating_index], nums[i] = nums[i], nums[pivot_separating_index]
+                pivot_separating_index += 1
 
 
-        nums[currentIndex], nums[r] = nums[r], nums[currentIndex]
+        nums[pivot_separating_index], nums[r] = nums[r], nums[pivot_separating_index]
 
-        if currentIndex > k:
+        if pivot_separating_index > k:
 
-            return self.quickSelect(k, nums, l, currentIndex - 1)
+            return self.quickSelect(k, nums, l, pivot_separating_index - 1)
 
-        if currentIndex < k:
+        if pivot_separating_index < k:
 
-            return self.quickSelect(k, nums, currentIndex + 1, r)
+            return self.quickSelect(k, nums, pivot_separating_index + 1, r)
 
-        # p == k
-        return nums[currentIndex]
+        # pivot_separating_index == k
+        return nums[pivot_separating_index]
 
 
     def findKthLargestHeap(self, nums: List[int], k: int) -> int:
@@ -46,5 +48,3 @@ class Solution:
             heapq.heappop(nums)
 
         return nums[0]
-
-    ## Note: Quickselect algorithm could be useful
