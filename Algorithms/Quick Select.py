@@ -34,6 +34,7 @@ def partition(nums, left, right):
     # to the left of this index are < pivot, to the right are > pivot
     separating_index = left
 
+    # don't include right because it is the pivot
     for i in range(left, right):
 
     	if nums[i] <= pivot:
