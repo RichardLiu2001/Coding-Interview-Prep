@@ -21,7 +21,7 @@ class Solution:
 
         #    right_product[i] = right_product[i + 1] * nums[i + 1]
 
-
+ß
 
         # we can just store the single cumulative right product instead of all right products, because we use each
         # value just once
