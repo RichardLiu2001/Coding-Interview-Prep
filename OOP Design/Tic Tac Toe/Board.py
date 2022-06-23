@@ -68,9 +68,6 @@ class Board:
 
 	def check_result(self, move):
 
-		if move == None:
-			return 'P'
-
 		move_row, move_col = self.move_to_coords(move)
 
 		if abs(self.row_sums[move_row]) == 3 or abs(self.col_sums[move_col]) == 3 \

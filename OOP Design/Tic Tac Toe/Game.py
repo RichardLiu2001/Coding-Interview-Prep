@@ -49,7 +49,7 @@ class Game:
 
 	def play(self):
 
-		result = self.board.check_result(None)
+		result = 'P'
 
 		while result == 'P':
 

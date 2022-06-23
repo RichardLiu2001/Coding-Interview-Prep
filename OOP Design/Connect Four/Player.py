@@ -5,6 +5,9 @@ class Player:
 
 	def __init__(self, color):
 
+		if color != 'R' and color != 'B':
+			raise Exception("Player's color must be R or B")
+
 		self.color = color
 
 

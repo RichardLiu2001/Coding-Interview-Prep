@@ -1,5 +1,5 @@
 # responsible for storing the state of the game board
-
+import numpy as np
 
 class Board:
 
@@ -29,11 +29,18 @@ class Board:
 
 	def make_move(self, move_col, player_color):
 
+		move_col -= 1
+		
 		dest_row = self.drop_indices[move_col]
 
 		self.board[dest_row][move_col] = player_color
 
 		self.drop_indices[move_col] -= 1
+
+
+	def check_result(self, move):
+
+		return 'P'
 
 
 	def print_board(self):
