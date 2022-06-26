@@ -6,7 +6,7 @@ class Codec:
         code = ""
 
         # code will be length of next string (delimited by '#')
-        # e.g [LeBron, James] -> 5#Lebron4#James
+        # e.g [LeBron, James, SUPERLONGWORD] -> 5#Lebron4#James13#SUPERLONGWORD
         # need # delimiter for word length because the length of string could be > 1 digit
 
         for s in strs:
