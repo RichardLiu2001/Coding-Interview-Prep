@@ -18,7 +18,7 @@ class Solution:
             
             else:
                 # sum == 0
-                result.append(nums[i], nums[left], nums[right])
+                result.append((nums[i], nums[left], nums[right]))
                 left += 1
                 right -=1 
 
