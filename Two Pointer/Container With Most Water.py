@@ -3,6 +3,8 @@ class Solution:
         
         max_area = 0
 
+        # We initialize pointers at the left and right ends so that moving the pointers
+        # inwards is the only way to potentially increase the amount of water in the container.
         left = 0
         right = len(height) - 1
 
