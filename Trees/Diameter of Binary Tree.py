@@ -7,17 +7,31 @@
 class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         
-        if not root:
-            return 0
-        
-        left_depth = self.maxDepthHelp(root.left)
-        right_depth = self.maxDepthHelp(root.right)
+        max_diameter = [0]
 
-        
+        self.dfs_height(root, max_diameter)
 
-    def maxDepthHelp(self, node, current_depth):
+        return max_diameter[0]
+
+    # returns height of current node (in nodes, not edges) and updates max_diameter
+    def dfs_height(self, node, max_diameter):
 
         if not node:
-            return current_depth
+            return 0
+
+        left_height = self.dfs_height(node.left, max_diameter)
+        right_height = self.dfs_height(node.right, max_diameter)
+
+        current_height = max(left_height, right_height) + 1
         
-        return max(self.maxDepthHelp(node.left, current_depth + 1), self.maxDepthHelp(node.right, current_depth + 1))
+        # cuurent diameter of a tree is the sum of the longest path down its
+        # left and right children
+        # the overall max diameter must be of this structure (longest down left,
+        # longest down right, parent), though the parent might not be the root.
+        current_diameter = left_height + right_height
+
+        max_diameter[0] = max(max_diameter[0], current_diameter)
+
+        return current_height
+
+        
