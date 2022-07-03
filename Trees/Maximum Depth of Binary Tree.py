@@ -4,9 +4,6 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-from turtle import right
-
-
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         
