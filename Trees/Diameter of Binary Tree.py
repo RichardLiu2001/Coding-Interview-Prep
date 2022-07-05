@@ -33,5 +33,4 @@ class Solution:
         max_diameter[0] = max(max_diameter[0], current_diameter)
 
         return current_height
-
         

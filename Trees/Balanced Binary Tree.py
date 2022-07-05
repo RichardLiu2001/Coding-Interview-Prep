@@ -9,10 +9,13 @@ class Solution:
         
         is_balanced = [True]
 
-        self.dfs_height(root, is_balanced)
+        #self.dfs_height(root, is_balanced)
+            
+        #return is_balanced[0]
         
-        return is_balanced[0]
-    
+        return self.dfs_height_return_pair(root)[0]
+
+
     def dfs_height(self, node, is_balanced):
 
         if not is_balanced[0]:
@@ -31,3 +34,28 @@ class Solution:
         current_height = max(left_height, right_height) + 1
 
         return current_height
+
+
+        # returns pair (bool, int) isBalanced and height of subtree starting at node
+    def dfs_height_return_pair(self, node):
+
+        if not node:
+            return (True, 0)
+
+        left_balanced, left_height = self.dfs_height_return_pair(node.left)
+
+        # return False as soon as we can, height no longer matters since 
+        # the False will propagate up the recursion tree and is what we care about.
+        if not left_balanced:
+            return (False, -1)
+
+        right_balanced, right_height = self.dfs_height_return_pair(node.right)
+
+        if not right_balanced:
+            return (False, -1)
+
+        current_node_balanced = abs(left_height - right_height) <= 1
+
+        current_height = max(left_height, right_height) + 1
+
+        return (current_node_balanced, current_height)
