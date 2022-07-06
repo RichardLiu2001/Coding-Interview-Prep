@@ -4,6 +4,7 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+from collections import deque
 class Solution:
     # Recursive solution
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
@@ -42,7 +43,7 @@ class Solution:
         if not root:
             return result
 
-        queue = [root]
+        queue = deque([root])
 
         while queue:
 
@@ -57,7 +58,8 @@ class Solution:
 
             for _ in range(nodes_in_current_level_count):
 
-                current_node = queue.pop(0)
+                # use deque popleft(), which is O(1) instead of regular list pop(0), which is O(N)
+                current_node = queue.popleft()
 
                 nodes_in_current_level.append(current_node.val)
 
