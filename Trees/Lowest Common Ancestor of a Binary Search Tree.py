@@ -23,6 +23,6 @@ class Solution:
         
         # root is in between p and q, thus p and q are in different subtrees and hence their lowest
         # common ancestor is root.
-        # Remember, ALL nodes in the left subtree of root are less than root, and ALL nodes in the 
-        # right subtree are greater than root.
+        # Remember, ALL nodes less than root are in its left subtree, and ALL nodes greater
+        # than root are in its right subtree.
         return root
