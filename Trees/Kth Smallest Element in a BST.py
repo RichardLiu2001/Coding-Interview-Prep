@@ -14,15 +14,6 @@ class Solution:
         self.kthSmallestIndex(root, k, result)
         return result[1]
 
-    def kthSmallestHelp(self, node, sorted_nums):
-
-        if not node:
-            return
-
-        self.kthSmallestHelp(node.left, sorted_nums)
-        sorted_nums.append(node.val)
-        self.kthSmallestHelp(node.right, sorted_nums)
-
 
     def kthSmallestIndex(self, node, k, order_num):
 
@@ -34,8 +25,16 @@ class Solution:
         order_num[0] += 1
         if order_num[0] == k:
             order_num[1] = node.val
-
-        print(str(order_num[0]) + " smallest is " + str(node.val))
-        return
+            return
 
         self.kthSmallestIndex(node.right, k, order_num)
+
+
+    def kthSmallestHelp(self, node, sorted_nums):
+
+        if not node:
+            return
+
+        self.kthSmallestHelp(node.left, sorted_nums)
+        sorted_nums.append(node.val)
+        self.kthSmallestHelp(node.right, sorted_nums)
