@@ -16,15 +16,15 @@ class Game:
 
 		while status == 'P':
 
-			p1_move = self.get_player_move(self.p1)
-			self.board.make_move(p1_move, self.p1.color)
+			p1_col = self.get_player_move(self.p1)
+			p1_move = self.board.make_move(p1_col, self.p1.color)
 			self.board.print_board()
 
 			if self.board.check_result(p1_move) != 'P':
 				break
 
-			p2_move = self.get_player_move(self.p2)
-			self.board.make_move(p2_move, self.p2.color)
+			p2_col = self.get_player_move(self.p2)
+			p2_move = self.board.make_move(p2_col, self.p2.color)
 			self.board.print_board()
 
 			status = self.board.check_result(p2_move)
