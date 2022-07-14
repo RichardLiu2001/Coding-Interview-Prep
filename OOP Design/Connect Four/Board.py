@@ -69,7 +69,7 @@ class Board:
 					return player_color
 
 				current_col += dx
-				current_row += move_row + dy
+				current_row += dy
 
 		return 'P'
 
