@@ -11,6 +11,7 @@ class Solution:
         visit_from_pacific = set()
         visit_from_atlantic = set()
 
+        # Run DFS starting from each square bordering an ocean
         for i in range(len(heights)):
             self.oceanDFS(i, 0, -1, visit_from_pacific, heights)
             self.oceanDFS(i, len(heights[0]) - 1, -1, visit_from_atlantic, heights)
@@ -18,7 +19,7 @@ class Solution:
         for i in range(len(heights[0])):
             self.oceanDFS(0, i, -1, visit_from_pacific, heights)
             self.oceanDFS(len(heights) - 1, i, -1, visit_from_atlantic, heights)
-
+            
         return list(visit_from_pacific.intersection(visit_from_atlantic))
 
 
