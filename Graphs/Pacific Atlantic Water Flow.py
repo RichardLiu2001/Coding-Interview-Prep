@@ -8,8 +8,6 @@ class Solution:
         if not heights or not heights[0]:
             return []
 
-        #visited_from_pacific = set()
-
         visit_from_pacific = set()
         visit_from_atlantic = set()
 
