@@ -13,4 +13,4 @@ class Player:
 
 	def get_move(self):
 		
-		return input(self.color + " player, enter the column 1 - 7 that you would like to drop your chip.")
+		return input(self.color + " player, enter the column 1 - 7 that you would like to drop your chip: \n")

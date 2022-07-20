@@ -29,13 +29,9 @@ class Game:
 
 			status = self.board.check_result(p2_move)
 
-
 		if status == 'D':
-
 			print('The game ended in a draw.')
-
 		else:
-
 			print('Player ' + status + " wins!")
 
 
@@ -43,31 +39,28 @@ class Game:
 
 		is_valid = False
 
-		move = None
-
 		while not is_valid:
 
-			move = player.get_move()
+			player_col = player.get_move()
 
 			try:
-				move = int(move)
+				player_col = int(player_col)
 
-				is_valid, code = self.board.is_valid_move(move)
+				is_valid, code = self.board.is_valid_move(player_col)
 
 				if not is_valid:
-					print(str(move) + " is not a valid move.")
+					print(str(player_col) + " is not a valid move.")
 					if code == 0:
-						print("The move must be a number between 1 and 9, inclusive")
+						print("The move must be a number between 1 and 7, inclusive")
 
 					elif code == 1:
-						print("Square " + str(move) + " is already occupied")
+						print("Column " + str(player_col) + " is full.")
 
 			except:
-				print(str(move) + " is not a valid move.")
+				print(str(player_col) + " is not a valid move.")
+				print(player_col + " is not an integer.")
 
-				print(move + " is not an integer.")
-
-		return move
+		return player_col
 
 
 game = Game()
