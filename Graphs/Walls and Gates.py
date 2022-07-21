@@ -35,14 +35,19 @@ class Solution:
 
                 current_node_i, current_node_j = queue.popleft()
 
+                # Whenever we reach an empty room (only empty rooms will be in the queue), 
+                # we have found it via the closest path, since we are running BFS from each 
+                # gate with each edge having the same distance (1).
+                # Conveniently, the current distance starts at 0, so this also works for the gates we first
+                # put in the queue.
                 rooms[current_node_i][current_node_j] = current_distance
 
-                self.add_neighbors(i, j, rooms, queue, visited)
+                self.add_neighbors(current_node_i, current_node_j, rooms, queue)
 
             current_distance += 1
 
 
-    def add_neighbors(self, i, j, rooms, queue, visited):
+    def add_neighbors(self, i, j, rooms, queue):
 
         for di in range(len(dx)):
 
@@ -52,6 +57,7 @@ class Solution:
             if not self.in_bounds(new_i, new_j, rooms) or rooms[new_i][new_j] == WALL or (new_i, new_j) in visited:
                 continue
 
+            # The square is an empty room
             queue.append((new_i, new_j))
             visited.add((new_i, new_j))
 
