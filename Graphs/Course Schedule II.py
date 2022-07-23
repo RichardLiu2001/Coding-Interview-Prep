@@ -49,7 +49,7 @@ class Solution:
 
         verified.add(course)
 
-        # We have verified that tbis course (and courses stemming from it) works, so we can add it to the ordering.
+        # We have verified that this course (and courses stemming from it) works, so we can add it to the ordering.
         course_ordering.append(course)
 
         return False

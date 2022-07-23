@@ -1,6 +1,5 @@
 from Graph import Graph
 
-
 def topological_sort(g: Graph):
 
 	# Stores the nodes that we have verified have no cycles from them if you run DFS starting at 
