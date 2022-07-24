@@ -5,14 +5,11 @@ class Solution:
 
         window_start = 0
 
-        char_freqs = {}
+        char_freqs = defaultdict(int)
 
         for window_end in range(len(s)):
 
             current_char = s[window_end]
-
-            if current_char not in char_freqs:
-                char_freqs[current_char] = 0
 
             char_freqs[current_char] += 1
 
@@ -21,10 +18,13 @@ class Solution:
             # appearing character = the number of characters we need to replace.
 
             # This has to be at most k
+            current_window_length = window_end - window_start + 1
+
+            need_to_replace_count = current_window_length - max(char_freqs.values())
 
             # Does not have to be a while loop, since it will only run once
             # Shifting the window over, rather than shrinking it
-            if (window_end - window_start + 1) - max(char_freqs.values()) > k:
+            if need_to_replace_count > k:
 
                 front_char = s[window_start]
 
@@ -43,18 +43,15 @@ class Solution:
 
         window_start = 0
 
-        char_freqs = {}
+        char_freqs = defaultdict(int)
 
         # tracks the count of the maximum repeating letter in any window
         # that was looked at before the current window
-        max_freq = 0
+        historical_max_freq = 0
 
         for window_end in range(len(s)):
 
             current_char = s[window_end]
-
-            if current_char not in char_freqs:
-                char_freqs[current_char] = 0
 
             char_freqs[current_char] += 1
 
@@ -66,11 +63,14 @@ class Solution:
             # window. However, this is ok since we are only interested in the longest window, which must have 
             # a character duplicated at least max_freq times.
             # Otherwise, the length of the current window cannot beat what we already found before.
-            max_freq = max(max_freq, char_freqs[current_char])
+            historical_max_freq = max(historical_max_freq, char_freqs[current_char])
 
             # Does not have to be a while loop, since it will only run once
-            # Shifting the window over, rather than shrinking it
-            if (window_end - window_start + 1 - max_freq > k):
+            # Shifting the window over, rather than shrinking it.
+            # If we already found a window of size 4, we now just check windows of size 4 and up.
+            current_window_length = window_end - window_start + 1
+
+            if current_window_length - historical_max_freq > k:
                 
                 front_char = s[window_start]
 
