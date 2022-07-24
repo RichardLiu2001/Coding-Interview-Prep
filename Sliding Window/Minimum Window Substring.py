@@ -14,7 +14,7 @@ class Solution:
             t_freqs[character] += 1
 
         # how many unique characters we have left to find
-        chars_remaining = len(t_freqs)
+        unique_chars_remaining = len(t_freqs)
 
         min_window_left = 0
         min_window_right = len(s) - 1
@@ -31,12 +31,12 @@ class Solution:
 
                 # reached quota for that one character
                 if t_freqs[cur_letter] == 0:
-                    chars_remaining -= 1
+                    unique_chars_remaining -= 1
 
             # Keep shrinking until the window doesn't contain the substring. We may be able to get
             # a more optimal solution than the initial window found if there are multiple excess
             # characters in the beginning (etc. looking for ABC in AAAAABC) -> get rid of all but 1 of the beginning A's.
-            while chars_remaining == 0:
+            while unique_chars_remaining == 0:
 
                 current_window_length = window_end - window_start + 1
 
@@ -53,7 +53,7 @@ class Solution:
 
                     # now have 1 unique character to match, current window no longer contains all of t
                     if t_freqs[left_char] == 1:
-                        chars_remaining += 1
+                        unique_chars_remaining += 1
 
                 window_start += 1
 
